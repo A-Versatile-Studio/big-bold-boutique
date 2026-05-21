@@ -146,5 +146,34 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: 'Inter', system-ui, sans-serif;
+    cursor: none;
   }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Archivo Black', sans-serif;
+    letter-spacing: -0.04em;
+    line-height: 0.85;
+  }
+  .font-serif-it {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    letter-spacing: -0.02em;
+  }
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .marquee {
+    animation: marquee 40s linear infinite;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float-y {
+    0%, 100% { transform: translateY(-1.5%) rotate(-1deg); }
+    50% { transform: translateY(1.5%) rotate(1deg); }
+  }
+  .float-anim { animation: float-y 6s ease-in-out infinite; }
 }
