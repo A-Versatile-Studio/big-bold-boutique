@@ -2,6 +2,8 @@
 @source "../src";
 @import "tw-animate-css";
 
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap');
+
 @custom-variant dark (&:is(.dark *));
 
 /*
@@ -63,8 +65,12 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --background: oklch(0.985 0.005 80);
+  --foreground: oklch(0.12 0.01 60);
+  --ink: oklch(0.12 0.01 60);
+  --paper: oklch(0.985 0.005 80);
+  --accent-hot: oklch(0.65 0.24 25);
+  --muted-warm: oklch(0.93 0.015 70);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
@@ -140,5 +146,34 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: 'Inter', system-ui, sans-serif;
+    cursor: none;
   }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Archivo Black', sans-serif;
+    letter-spacing: -0.04em;
+    line-height: 0.85;
+  }
+  .font-serif-it {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    letter-spacing: -0.02em;
+  }
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .marquee {
+    animation: marquee 40s linear infinite;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float-y {
+    0%, 100% { transform: translateY(-1.5%) rotate(-1deg); }
+    50% { transform: translateY(1.5%) rotate(1deg); }
+  }
+  .float-anim { animation: float-y 6s ease-in-out infinite; }
 }
