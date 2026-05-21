@@ -102,60 +102,70 @@ export function Hero() {
         </p>
         <h1
           key={`title-${i}`}
-          className="font-display text-foreground text-[18vw] md:text-[13vw] leading-[0.82] anim-drop-in"
+          className="font-display text-foreground text-[18vw] md:text-[13vw] leading-[0.82] overflow-hidden"
         >
-          {s.title[0]}<br />
-          <span className="font-serif-it font-normal italic text-foreground/90">{s.title[1]}</span>
+          <span className="block overflow-hidden">
+            <span className="word-rise inline-block" style={{ animationDelay: "0.05s" }}>{s.title[0]}</span>
+          </span>
+          <span className="block overflow-hidden">
+            <span className="word-rise font-serif-it font-normal italic text-foreground/90 inline-block" style={{ animationDelay: "0.25s" }}>{s.title[1]}</span>
+          </span>
         </h1>
       </div>
 
       {/* Floating image — rotates every 3s with unique animation */}
       <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-        <img
-          key={`img-${i}`}
-          src={s.image}
-          alt={s.name}
-          width={1280}
-          height={1280}
-          className={`${animClass} w-[70vw] md:w-[52vw] max-w-[780px] h-auto object-contain drop-shadow-[0_40px_60px_rgba(0,0,0,0.18)]`}
-        />
+        <div key={`img-${i}`} className={`${animClass} w-[70vw] md:w-[52vw] max-w-[780px]`}>
+          <img
+            src={s.image}
+            alt={s.name}
+            width={1280}
+            height={1280}
+            className="float-soft w-full h-auto object-contain drop-shadow-[0_40px_60px_rgba(0,0,0,0.22)]"
+          />
+        </div>
       </div>
 
       {/* Offer badge */}
       <div
         key={`badge-${i}`}
-        className="absolute top-[45%] left-6 md:left-16 z-20 anim-spin-in"
+        className="absolute top-[45%] left-6 md:left-16 z-20 anim-badge-pop"
       >
-        <div className="relative w-32 h-32 md:w-44 md:h-44 rounded-full bg-foreground text-background flex flex-col items-center justify-center text-center rotate-[-12deg] shadow-xl">
-          <span className="font-display text-3xl md:text-5xl leading-none">{s.discount}</span>
-          <span className="text-[10px] uppercase tracking-[0.25em] mt-2 px-4">{s.offer}</span>
+        <div className="relative w-32 h-32 md:w-44 md:h-44">
+          <div className="absolute inset-[-10px] rounded-full border border-dashed border-foreground/30 ring-spin" />
+          <div className="relative w-full h-full rounded-full bg-foreground text-background flex flex-col items-center justify-center text-center shadow-xl">
+            <span className="font-display text-3xl md:text-5xl leading-none">{s.discount}</span>
+            <span className="text-[10px] uppercase tracking-[0.25em] mt-2 px-4">{s.offer}</span>
+          </div>
         </div>
       </div>
 
       {/* Bottom right details */}
       <div
         key={`info-${i}`}
-        className="absolute bottom-32 right-6 md:right-10 z-20 max-w-sm text-right anim-swing-in"
+        className="absolute bottom-32 right-6 md:right-10 z-20 max-w-sm text-right"
       >
-        <div className="text-xs uppercase tracking-[0.25em] text-foreground/60 mb-3">{s.no} — {s.cat}</div>
-        <h3 className="font-display text-3xl md:text-4xl mb-3">{s.name}</h3>
-        <p className="text-sm text-foreground/70 mb-4 leading-relaxed">{s.desc}</p>
-        <div className="flex items-center justify-end gap-4 mb-3">
+        <div className="anim-slide-up text-xs uppercase tracking-[0.25em] text-foreground/60 mb-3" style={{ animationDelay: "0.1s" }}>{s.no} — {s.cat}</div>
+        <h3 className="anim-slide-up font-display text-3xl md:text-4xl mb-3" style={{ animationDelay: "0.2s" }}>{s.name}</h3>
+        <p className="anim-slide-up text-sm text-foreground/70 mb-4 leading-relaxed" style={{ animationDelay: "0.3s" }}>{s.desc}</p>
+        <div className="anim-slide-up flex items-center justify-end gap-4 mb-3" style={{ animationDelay: "0.4s" }}>
           <span className="text-sm line-through text-foreground/40">{s.was}</span>
           <span className="font-display text-2xl text-[color:var(--accent-hot)]">{s.price}</span>
         </div>
-        <button data-cursor-hover className="text-xs uppercase tracking-[0.25em] underline underline-offset-4 hover:opacity-70 transition-opacity">
+        <button data-cursor-hover className="anim-slide-up text-xs uppercase tracking-[0.25em] underline underline-offset-4 hover:opacity-70 transition-opacity" style={{ animationDelay: "0.5s" }}>
           Add to bag →
         </button>
       </div>
 
       {/* Slide indicators */}
-      <div className="absolute top-[50%] right-6 md:right-10 z-20 flex flex-col gap-2">
+      <div className="absolute top-[50%] right-6 md:right-10 z-20 flex flex-col gap-3">
         {SLIDES.map((_, k) => (
           <span
             key={k}
-            className={`block h-[2px] transition-all duration-500 ${k === i ? "w-12 bg-foreground" : "w-6 bg-foreground/30"}`}
-          />
+            className={`block h-[2px] overflow-hidden transition-all duration-700 ${k === i ? "w-14 bg-foreground/20" : "w-6 bg-foreground/20"}`}
+          >
+            {k === i && <span key={`p-${i}`} className="block h-full w-full bg-foreground progress-bar" />}
+          </span>
         ))}
       </div>
 

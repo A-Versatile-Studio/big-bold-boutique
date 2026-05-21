@@ -172,42 +172,83 @@
     to { transform: translateX(-50%); }
   }
   @keyframes float-y {
-    0%, 100% { transform: translateY(-1.5%) rotate(-1deg); }
-    50% { transform: translateY(1.5%) rotate(1deg); }
+    0%, 100% { transform: translateY(-2%) rotate(-1.2deg); }
+    50% { transform: translateY(2%) rotate(1.2deg); }
   }
-  .float-anim { animation: float-y 6s ease-in-out infinite; }
+  .float-anim { animation: float-y 7s ease-in-out infinite; }
+  .float-soft { animation: float-y 9s ease-in-out infinite; }
 
   /* Hero rotation entrance animations */
   @keyframes hero-spin-in {
-    0% { opacity: 0; transform: scale(0.3) rotate(-180deg); }
-    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+    0% { opacity: 0; transform: scale(0.4) rotate(-220deg); filter: blur(8px); }
+    60% { opacity: 1; filter: blur(0); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); filter: blur(0); }
   }
   @keyframes hero-drop-in {
-    0% { opacity: 0; transform: translateY(-60vh) rotate(20deg); }
-    60% { opacity: 1; transform: translateY(20px) rotate(-5deg); }
+    0% { opacity: 0; transform: translateY(-70vh) rotate(18deg); }
+    55% { opacity: 1; transform: translateY(24px) rotate(-4deg); }
+    75% { transform: translateY(-10px) rotate(2deg); }
     100% { opacity: 1; transform: translateY(0) rotate(0deg); }
   }
   @keyframes hero-swing-in {
-    0% { opacity: 0; transform: translateX(80vw) rotate(45deg); }
+    0% { opacity: 0; transform: translateX(90vw) rotate(35deg); }
+    70% { opacity: 1; transform: translateX(-3vw) rotate(-4deg); }
     100% { opacity: 1; transform: translateX(0) rotate(0deg); }
   }
   @keyframes hero-zoom-in {
-    0% { opacity: 0; transform: scale(2.5); filter: blur(20px); }
+    0% { opacity: 0; transform: scale(2.8); filter: blur(24px); }
+    60% { opacity: 1; }
     100% { opacity: 1; transform: scale(1); filter: blur(0); }
   }
   @keyframes hero-flip-in {
-    0% { opacity: 0; transform: perspective(1200px) rotateY(90deg) scale(0.6); }
-    100% { opacity: 1; transform: perspective(1200px) rotateY(0deg) scale(1); }
+    0% { opacity: 0; transform: perspective(1400px) rotateY(110deg) scale(0.55); }
+    100% { opacity: 1; transform: perspective(1400px) rotateY(0deg) scale(1); }
   }
-  .anim-spin-in  { animation: hero-spin-in  1s cubic-bezier(.2,.8,.2,1) both; }
-  .anim-drop-in  { animation: hero-drop-in  1s cubic-bezier(.2,.8,.2,1) both; }
-  .anim-swing-in { animation: hero-swing-in 1s cubic-bezier(.2,.8,.2,1) both; }
-  .anim-zoom-in  { animation: hero-zoom-in  1s cubic-bezier(.2,.8,.2,1) both; }
-  .anim-flip-in  { animation: hero-flip-in  1s cubic-bezier(.2,.8,.2,1) both; }
+  .anim-spin-in  { animation: hero-spin-in  1.2s cubic-bezier(.22,1,.36,1) both; }
+  .anim-drop-in  { animation: hero-drop-in  1.3s cubic-bezier(.22,1,.36,1) both; }
+  .anim-swing-in { animation: hero-swing-in 1.2s cubic-bezier(.22,1,.36,1) both; }
+  .anim-zoom-in  { animation: hero-zoom-in  1.1s cubic-bezier(.22,1,.36,1) both; }
+  .anim-flip-in  { animation: hero-flip-in  1.2s cubic-bezier(.22,1,.36,1) both; }
+
+  /* Word-by-word reveal */
+  @keyframes word-rise {
+    0% { opacity: 0; transform: translateY(110%) skewY(6deg); }
+    100% { opacity: 1; transform: translateY(0) skewY(0); }
+  }
+  .word-rise { display: inline-block; animation: word-rise .9s cubic-bezier(.22,1,.36,1) both; }
+
+  /* Slide up from below with blur */
+  @keyframes slide-up-blur {
+    0% { opacity: 0; transform: translateY(40px); filter: blur(6px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  .anim-slide-up { animation: slide-up-blur .9s cubic-bezier(.22,1,.36,1) both; }
+
+  /* Badge pop with wobble */
+  @keyframes badge-pop {
+    0% { opacity: 0; transform: scale(0) rotate(-90deg); }
+    60% { opacity: 1; transform: scale(1.15) rotate(-8deg); }
+    80% { transform: scale(0.95) rotate(-14deg); }
+    100% { opacity: 1; transform: scale(1) rotate(-12deg); }
+  }
+  .anim-badge-pop { animation: badge-pop 1s cubic-bezier(.34,1.56,.64,1) both; }
+
+  /* Spinning ring around badge */
+  @keyframes ring-spin {
+    to { transform: rotate(360deg); }
+  }
+  .ring-spin { animation: ring-spin 14s linear infinite; }
+
+  /* Progress bar for slide indicator */
+  @keyframes progress {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+  .progress-bar { animation: progress 3s linear both; transform-origin: left; }
 
   /* Reveal-on-scroll */
-  .reveal { opacity: 0; transform: translateY(40px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1); }
-  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal { opacity: 0; transform: translateY(50px); filter: blur(4px); transition: opacity 1s ease, transform 1.1s cubic-bezier(.22,1,.36,1), filter .9s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); filter: blur(0); }
 
   /* Ticker banner */
   @keyframes ticker {
