@@ -5,6 +5,12 @@ import { Hero } from "@/components/Hero";
 import { ProductRow } from "@/components/ProductRow";
 import { Marquee } from "@/components/Marquee";
 import { Footer } from "@/components/Footer";
+import { Lookbook } from "@/components/Lookbook";
+import { Craft } from "@/components/Craft";
+import { Categories } from "@/components/Categories";
+import { Manifesto } from "@/components/Manifesto";
+import { Journal } from "@/components/Journal";
+import { Testimonials } from "@/components/Testimonials";
 import pJacket from "@/assets/p-jacket.png";
 import pJeans from "@/assets/p-jeans.png";
 import pTee from "@/assets/p-tee.png";
@@ -42,7 +48,11 @@ function Index() {
         ]}
       />
 
+      <Lookbook />
+
       <Marquee />
+
+      <Categories />
 
       <ProductRow
         title="SOFT / STAPLES"
@@ -56,6 +66,10 @@ function Index() {
         ]}
       />
 
+      <Craft />
+
+      <Manifesto />
+
       <ProductRow
         title="OBJECTS / 01"
         subtitle="Accessories & footwear"
@@ -66,6 +80,10 @@ function Index() {
           { name: "Rider Jacket", price: "€ 890", tag: "Leather", image: pJacket },
         ]}
       />
+
+      <Testimonials />
+
+      <Journal />
 
       <Footer />
     </main>
