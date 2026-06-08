@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { ArrowDown, Sparkles, Tag } from "lucide-react";
+import { ArrowDown, Sparkles, Tag, ArrowUpRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import heroCoat from "@/assets/hero-coat.png";
 import pJacket from "@/assets/p-jacket.png";
 import pSweater from "@/assets/p-sweater.png";
@@ -9,6 +10,7 @@ const ANIMS = ["anim-spin-in", "anim-drop-in", "anim-swing-in", "anim-zoom-in", 
 
 const SLIDES = [
   {
+    slug: "atelier-coat",
     no: "N° 001",
     cat: "Outerwear",
     name: "Atelier Coat",
@@ -18,9 +20,11 @@ const SLIDES = [
     was: "€ 1,290",
     discount: "−20%",
     offer: "Launch week only",
+    swatch: "Bone / Tobacco / Ink",
     image: heroCoat,
   },
   {
+    slug: "rider-jacket",
     no: "N° 002",
     cat: "Leather",
     name: "Rider Jacket",
@@ -30,9 +34,11 @@ const SLIDES = [
     was: "€ 890",
     discount: "−20%",
     offer: "Bundle + Tee free",
+    swatch: "Black / Cognac",
     image: pJacket,
   },
   {
+    slug: "cable-knit",
     no: "N° 003",
     cat: "Knitwear",
     name: "Cable Knit",
@@ -42,9 +48,11 @@ const SLIDES = [
     was: "€ 340",
     discount: "−20%",
     offer: "Members get early access",
+    swatch: "Undyed / Charcoal",
     image: pSweater,
   },
   {
+    slug: "holdall-48h",
     no: "N° 004",
     cat: "Objects",
     name: "Holdall 48h",
@@ -54,6 +62,7 @@ const SLIDES = [
     was: "€ 520",
     discount: "−20%",
     offer: "Free monogram included",
+    swatch: "Tan / Espresso",
     image: pBag,
   },
 ];
@@ -152,9 +161,18 @@ export function Hero() {
           <span className="text-sm line-through text-foreground/40">{s.was}</span>
           <span className="font-display text-2xl text-[color:var(--accent-hot)]">{s.price}</span>
         </div>
-        <button data-cursor-hover className="anim-slide-up text-xs uppercase tracking-[0.25em] underline underline-offset-4 hover:opacity-70 transition-opacity" style={{ animationDelay: "0.5s" }}>
-          Add to bag →
-        </button>
+        <p className="anim-slide-up text-[11px] uppercase tracking-[0.25em] text-foreground/50 mb-3" style={{ animationDelay: "0.45s" }}>
+          Colourway: {s.swatch}
+        </p>
+        <Link
+          to="/product/$slug"
+          params={{ slug: s.slug }}
+          data-cursor-hover
+          className="anim-slide-up inline-flex items-center gap-2 px-5 py-3 bg-foreground text-background text-xs uppercase tracking-[0.3em] hover:bg-[color:var(--accent-hot)] transition-colors"
+          style={{ animationDelay: "0.55s" }}
+        >
+          View the piece <ArrowUpRight size={14} />
+        </Link>
       </div>
 
       {/* Slide indicators */}

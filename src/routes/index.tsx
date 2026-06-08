@@ -11,14 +11,16 @@ import { Categories } from "@/components/Categories";
 import { Manifesto } from "@/components/Manifesto";
 import { Journal } from "@/components/Journal";
 import { Testimonials } from "@/components/Testimonials";
-import pJacket from "@/assets/p-jacket.png";
-import pJeans from "@/assets/p-jeans.png";
-import pTee from "@/assets/p-tee.png";
-import pSweater from "@/assets/p-sweater.png";
-import pTrousers from "@/assets/p-trousers.png";
-import pSneakers from "@/assets/p-sneakers.png";
-import pBag from "@/assets/p-bag.png";
-import pSunglasses from "@/assets/p-sunglasses.png";
+import { Filters } from "@/components/Filters";
+import { Materials } from "@/components/Materials";
+import { Press } from "@/components/Press";
+import { Instagram } from "@/components/Instagram";
+import { FAQ } from "@/components/FAQ";
+import { PRODUCTS } from "@/lib/products";
+
+const byCat = (cat: string) => PRODUCTS.filter((p) => p.category === cat).map((p) => ({
+  name: p.name, price: p.price, tag: p.tag, image: p.image, slug: p.slug,
+}));
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -40,12 +42,7 @@ function Index() {
       <ProductRow
         title="NEW / ARRIVALS"
         subtitle="Drop 04 — This Friday"
-        products={[
-          { name: "Rider Jacket", price: "€ 890", tag: "Leather", image: pJacket },
-          { name: "Cable Knit", price: "€ 340", tag: "Wool", image: pSweater },
-          { name: "Selvedge 01", price: "€ 220", tag: "Denim", image: pJeans },
-          { name: "Plain Tee", price: "€ 65", tag: "Cotton", image: pTee },
-        ]}
+        products={PRODUCTS.slice(0, 4).map((p) => ({ name: p.name, price: p.price, tag: p.tag, image: p.image, slug: p.slug }))}
       />
 
       <Lookbook />
@@ -54,36 +51,36 @@ function Index() {
 
       <Categories />
 
+      <Filters />
+
+      <Materials />
+
       <ProductRow
         title="SOFT / STAPLES"
         subtitle="The everyday edit"
         align="right"
-        products={[
-          { name: "Box Tee", price: "€ 65", tag: "Cotton", image: pTee },
-          { name: "Cable Knit", price: "€ 340", tag: "Wool", image: pSweater },
-          { name: "Wide Trouser", price: "€ 280", tag: "Twill", image: pTrousers },
-          { name: "Selvedge 01", price: "€ 220", tag: "Denim", image: pJeans },
-        ]}
+        products={[...byCat("Tops"), ...byCat("Knitwear"), ...byCat("Trousers"), ...byCat("Denim")].slice(0, 4)}
       />
 
       <Craft />
 
       <Manifesto />
 
+      <Press />
+
       <ProductRow
         title="OBJECTS / 01"
         subtitle="Accessories & footwear"
-        products={[
-          { name: "Court 90", price: "€ 240", tag: "Footwear", image: pSneakers },
-          { name: "Holdall", price: "€ 520", tag: "Leather", image: pBag },
-          { name: "Tortoise Shades", price: "€ 180", tag: "Eyewear", image: pSunglasses },
-          { name: "Rider Jacket", price: "€ 890", tag: "Leather", image: pJacket },
-        ]}
+        products={byCat("Objects")}
       />
 
       <Testimonials />
 
+      <Instagram />
+
       <Journal />
+
+      <FAQ />
 
       <Footer />
     </main>
