@@ -117,7 +117,7 @@ function ProductPage() {
           <div className="mt-10 border-t border-foreground/15 pt-8">
             <p className="text-xs uppercase tracking-[0.3em] text-foreground/50 mb-4">The details</p>
             <ul className="space-y-3">
-              {product.details.map((d) => (
+              {product.details.map((d: string) => (
                 <li key={d} className="flex gap-3 text-sm text-foreground/80"><span className="text-foreground/40">—</span>{d}</li>
               ))}
             </ul>
