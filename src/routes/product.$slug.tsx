@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, Heart, Minus, Plus, Truck, RotateCcw, ShieldCheck, Star, Scissors, Leaf, Ruler, Sparkles, ChevronDown } from "lucide-react";
+import { ArrowLeft, Heart, Minus, Plus, Truck, RotateCcw, ShieldCheck, Star, ChevronDown, Mail } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Cursor } from "@/components/Cursor";
 import { Nav } from "@/components/Nav";
@@ -60,6 +60,35 @@ const FAQS = [
   { q: "What is your return policy?", a: "Thirty days, unworn, with the original muslin. Made-to-order pieces are returnable but not refundable in cash — store credit only." },
 ];
 
+const SPECS = [
+  { k: "Weight", v: "1,420 g · medium-heavy" },
+  { k: "Edition", v: "Open · made to order" },
+  { k: "Lining", v: "Unlined back, cupro sleeve" },
+  { k: "Hardware", v: "Hand-set horn buttons" },
+  { k: "Closure", v: "Three-button single-breast" },
+  { k: "Pockets", v: "Two flap, one welt interior" },
+];
+
+const STYLED_WITH = [
+  { title: "On a Tuesday", note: "Over a plain tee with raw selvedge denim and the Court 90.", img: "tee" },
+  { title: "For the dinner", note: "Cable knit beneath, wide trouser below, holdall in hand.", img: "knit" },
+  { title: "When it rains", note: "Cuffs turned, collar up. The wool drinks it and keeps going.", img: "coat" },
+];
+
+const CARE = [
+  { t: "Brush", d: "Horsehair brush after each wear, with the grain." },
+  { t: "Air", d: "Twenty-four hours on a wide wooden hanger." },
+  { t: "Clean", d: "Dry-clean once a season. No more, ideally less." },
+  { t: "Press", d: "Cool iron through cotton cloth; lapels by hand." },
+];
+
+const SUSTAINABILITY = [
+  { n: "01", t: "Made to order", d: "We do not hold stock and we do not destroy unsold goods." },
+  { n: "02", t: "Single-source", d: "Fewer than 80km between the fibre and the finished cloth." },
+  { n: "03", t: "Repaired for life", d: "Send it back any time. The atelier that built it will mend it." },
+  { n: "04", t: "Plastic-free", d: "Muslin wrap, unbleached cardboard sleeve, paper tape." },
+];
+
 function ProductPage() {
   const { product } = Route.useLoaderData();
   const [size, setSize] = useState("M");
@@ -91,38 +120,38 @@ function ProductPage() {
       <Nav />
 
       {/* Breadcrumb / meta bar */}
-      <section className="pt-28 px-6 md:px-10 flex flex-wrap items-center justify-between gap-4 text-[11px] uppercase tracking-[0.3em] text-foreground/55">
+      <section className="pt-32 px-8 md:px-16 lg:px-24 flex flex-wrap items-center justify-between gap-4 text-[11px] uppercase tracking-[0.3em] text-foreground/55">
         <Link to="/" data-cursor-hover className="inline-flex items-center gap-2 hover:text-foreground transition-colors">
           <ArrowLeft size={14} /> Shop · {product.category} · <span className="text-foreground">{product.name}</span>
         </Link>
-        <span className="hidden md:inline">Reference {product.slug.toUpperCase()} · {product.origin}</span>
+        <span className="hidden md:inline">Ref. {product.slug.toUpperCase()} · {product.origin}</span>
       </section>
 
       {/* Sticky image / scrolling details */}
-      <section className="px-6 md:px-10 pt-10 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start">
+      <section className="px-8 md:px-16 lg:px-24 pt-16 md:pt-20 grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 items-start">
         {/* Sticky image rail */}
-        <div className="md:col-span-7 md:sticky md:top-24 self-start">
+        <div className="md:col-span-7 md:sticky md:top-28 self-start">
           <div className="relative aspect-square md:aspect-[4/5] bg-[color:var(--muted-warm)] overflow-hidden">
-            <span className="absolute top-6 left-6 z-10 text-[11px] uppercase tracking-[0.3em] text-foreground/60">
+            <span className="absolute top-8 left-8 z-10 text-[11px] uppercase tracking-[0.3em] text-foreground/60">
               {product.tag} · {product.category}
             </span>
-            <span className="absolute top-6 right-6 z-10 text-[11px] uppercase tracking-[0.3em] text-foreground/60">
+            <span className="absolute top-8 right-8 z-10 text-[11px] uppercase tracking-[0.3em] text-foreground/60">
               {String(activeImage + 1).padStart(2, "0")} / {String(gallery.length).padStart(2, "0")}
             </span>
             <img
               key={activeImage}
               src={gallery[activeImage]}
               alt={product.name}
-              className="absolute inset-0 m-auto h-[88%] w-[88%] object-contain float-soft drop-shadow-[0_30px_50px_rgba(0,0,0,0.2)] anim-zoom-in"
+              className="absolute inset-0 m-auto h-[78%] w-[78%] object-contain float-soft drop-shadow-[0_30px_50px_rgba(0,0,0,0.2)] anim-zoom-in"
             />
-            <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+            <div className="absolute bottom-8 left-8 right-8 flex items-end justify-between">
               <p className="font-serif-it italic text-foreground/65 max-w-[60%] text-sm leading-snug">
                 Photographed on a 1.84m model, wearing a size M.
               </p>
               <span className="text-[10px] uppercase tracking-[0.3em] text-foreground/50">Scroll —</span>
             </div>
           </div>
-          <div className="mt-4 grid grid-cols-4 gap-3">
+          <div className="mt-6 grid grid-cols-4 gap-3">
             {gallery.map((src, k) => (
               <button
                 key={k}
@@ -137,38 +166,43 @@ function ProductPage() {
           </div>
         </div>
 
-        {/* Scrolling details */}
-        <div className="md:col-span-5 flex flex-col pb-24">
-          <p className="text-xs uppercase tracking-[0.3em] text-foreground/50 mb-4">{product.origin}</p>
-          <h1 className="font-display text-[14vw] md:text-[5vw] leading-[0.9]">{product.name}</h1>
-          <div className="mt-2 flex items-center gap-3 text-[11px] uppercase tracking-[0.3em] text-foreground/55">
-            <span className="inline-flex items-center gap-1"><Star size={12} fill="currentColor" /> 4.9</span>
-            <span>·</span><span>128 reviews</span>
-            <span>·</span><span>In atelier</span>
-          </div>
-          <div className="mt-6 flex items-baseline gap-4">
-            <span className="font-display text-3xl text-[color:var(--accent-hot)]">{product.price}</span>
-            {product.was && <span className="text-foreground/40 line-through font-serif-it">{product.was}</span>}
-            <span className="text-xs uppercase tracking-[0.25em] text-foreground/50">Tax included</span>
-          </div>
-          <p className="mt-2 text-xs text-foreground/55">or 3 interest-free payments of <span className="text-foreground">€ {Math.round(product.priceNum / 3)}</span></p>
+        {/* Scrolling details — kept intentionally sparse */}
+        <div className="md:col-span-5 flex flex-col pb-32 md:min-h-[150vh]">
+          <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50">{product.origin}</p>
 
-          <p className="mt-8 text-base text-foreground/75 leading-relaxed font-serif-it italic">{product.story}</p>
+          <h1 className="mt-8 font-display text-[16vw] md:text-[5.2vw] leading-[0.88]">
+            {product.name}
+          </h1>
+
+          <div className="mt-6 flex items-center gap-3 text-[11px] uppercase tracking-[0.3em] text-foreground/55">
+            <span className="inline-flex items-center gap-1"><Star size={12} fill="currentColor" /> 4.9</span>
+            <span>—</span><span>128 reviews</span>
+          </div>
+
+          <div className="mt-12 flex items-baseline gap-5">
+            <span className="font-display text-4xl text-[color:var(--accent-hot)]">{product.price}</span>
+            <span className="text-[10px] uppercase tracking-[0.3em] text-foreground/50">Tax incl.</span>
+          </div>
+          <p className="mt-3 text-xs text-foreground/55">or 3 × <span className="text-foreground">€ {Math.round(product.priceNum / 3)}</span> · interest-free</p>
+
+          <p className="mt-14 text-lg text-foreground/80 leading-[1.7] font-serif-it italic max-w-md">
+            {product.story}
+          </p>
 
           {/* Colourway */}
-          <div className="mt-10">
-            <div className="flex items-baseline justify-between mb-3">
-              <p className="text-xs uppercase tracking-[0.3em] text-foreground/50">Colourway</p>
-              <p className="text-xs uppercase tracking-[0.3em] text-foreground/80">{colorway}</p>
+          <div className="mt-20">
+            <div className="flex items-baseline justify-between mb-5">
+              <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50">Colourway</p>
+              <p className="text-[11px] uppercase tracking-[0.3em] text-foreground">{colorway}</p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               {COLORWAYS.map((c) => (
                 <button
                   key={c.name}
                   data-cursor-hover
                   onClick={() => setColorway(c.name)}
                   aria-label={c.name}
-                  className={`relative h-10 w-10 rounded-full transition-transform ${colorway === c.name ? "ring-1 ring-offset-4 ring-offset-background ring-foreground scale-110" : "hover:scale-105"}`}
+                  className={`relative h-11 w-11 rounded-full transition-transform ${colorway === c.name ? "ring-1 ring-offset-4 ring-offset-background ring-foreground scale-110" : "hover:scale-105"}`}
                   style={{ background: c.hex }}
                 />
               ))}
@@ -176,10 +210,10 @@ function ProductPage() {
           </div>
 
           {/* Size */}
-          <div className="mt-10">
-            <div className="flex items-baseline justify-between mb-3">
-              <p className="text-xs uppercase tracking-[0.3em] text-foreground/50">Size</p>
-              <button data-cursor-hover className="text-xs underline underline-offset-4 text-foreground/60 hover:text-foreground">Size guide ↓</button>
+          <div className="mt-16">
+            <div className="flex items-baseline justify-between mb-5">
+              <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50">Size — {size}</p>
+              <a href="#size-guide" data-cursor-hover className="text-[11px] uppercase tracking-[0.3em] underline underline-offset-4 text-foreground/60 hover:text-foreground">Guide ↓</a>
             </div>
             <div className="flex flex-wrap gap-2">
               {SIZES.map((s) => (
@@ -187,123 +221,185 @@ function ProductPage() {
                   key={s}
                   data-cursor-hover
                   onClick={() => setSize(s)}
-                  className={`w-12 h-12 text-sm uppercase tracking-wider border transition-all ${size === s ? "bg-foreground text-background border-foreground" : "border-foreground/25 hover:border-foreground"}`}
+                  className={`w-14 h-14 text-sm uppercase tracking-wider border transition-all ${size === s ? "bg-foreground text-background border-foreground" : "border-foreground/20 hover:border-foreground"}`}
                 >
                   {s}
                 </button>
               ))}
             </div>
-            <p className="mt-3 text-xs text-foreground/55">Model is 1.84m and wears a {size}. Generally true to size.</p>
+            <p className="mt-4 text-xs text-foreground/55 leading-relaxed">Model is 1.84m and wears a {size}. Generally true to size — between sizes, take the larger for the silhouette we shoot.</p>
           </div>
 
-          <div className="mt-8 flex items-center gap-4">
-            <div className="flex items-center border border-foreground/25">
-              <button data-cursor-hover onClick={() => setQty(Math.max(1, qty - 1))} className="w-12 h-12 grid place-items-center hover:bg-foreground/5"><Minus size={14} /></button>
+          {/* CTA */}
+          <div className="mt-16 flex items-center gap-3">
+            <div className="flex items-center border border-foreground/20">
+              <button data-cursor-hover onClick={() => setQty(Math.max(1, qty - 1))} className="w-14 h-14 grid place-items-center hover:bg-foreground/5"><Minus size={14} /></button>
               <span className="w-10 text-center font-display">{qty}</span>
-              <button data-cursor-hover onClick={() => setQty(qty + 1)} className="w-12 h-12 grid place-items-center hover:bg-foreground/5"><Plus size={14} /></button>
+              <button data-cursor-hover onClick={() => setQty(qty + 1)} className="w-14 h-14 grid place-items-center hover:bg-foreground/5"><Plus size={14} /></button>
             </div>
-            <button data-cursor-hover className="flex-1 h-12 bg-foreground text-background text-xs uppercase tracking-[0.3em] hover:bg-[color:var(--accent-hot)] transition-colors">
+            <button data-cursor-hover className="flex-1 h-14 bg-foreground text-background text-xs uppercase tracking-[0.3em] hover:bg-[color:var(--accent-hot)] transition-colors">
               Add to bag — {product.price}
             </button>
-            <button data-cursor-hover aria-label="Save" className="w-12 h-12 grid place-items-center border border-foreground/25 hover:border-foreground transition-colors">
+            <button data-cursor-hover aria-label="Save" className="w-14 h-14 grid place-items-center border border-foreground/20 hover:border-foreground transition-colors">
               <Heart size={16} strokeWidth={1.5} />
             </button>
           </div>
-          <button data-cursor-hover className="mt-3 w-full h-12 border border-foreground text-xs uppercase tracking-[0.3em] hover:bg-foreground hover:text-background transition-colors">
+          <button data-cursor-hover className="mt-3 w-full h-14 border border-foreground text-[11px] uppercase tracking-[0.3em] hover:bg-foreground hover:text-background transition-colors">
             Book a fitting — Florence atelier
           </button>
 
-          <div className="mt-8 grid grid-cols-3 gap-3 text-[11px] uppercase tracking-[0.2em] text-foreground/60">
-            <div className="flex flex-col items-start gap-2 p-3 border border-foreground/15"><Truck size={16} strokeWidth={1.5} />Ships in 48h</div>
-            <div className="flex flex-col items-start gap-2 p-3 border border-foreground/15"><RotateCcw size={16} strokeWidth={1.5} />30 day returns</div>
-            <div className="flex flex-col items-start gap-2 p-3 border border-foreground/15"><ShieldCheck size={16} strokeWidth={1.5} />Lifetime repairs</div>
-          </div>
+          {/* Trust strip — clean three-row */}
+          <ul className="mt-16 divide-y divide-foreground/10 border-y border-foreground/10">
+            <li className="flex items-center gap-4 py-5 text-sm">
+              <Truck size={16} strokeWidth={1.5} className="text-foreground/50" />
+              <span className="text-foreground/85">Shipped within 48 hours</span>
+              <span className="ml-auto text-[10px] uppercase tracking-[0.3em] text-foreground/45">Worldwide</span>
+            </li>
+            <li className="flex items-center gap-4 py-5 text-sm">
+              <RotateCcw size={16} strokeWidth={1.5} className="text-foreground/50" />
+              <span className="text-foreground/85">Thirty days to change your mind</span>
+              <span className="ml-auto text-[10px] uppercase tracking-[0.3em] text-foreground/45">Free</span>
+            </li>
+            <li className="flex items-center gap-4 py-5 text-sm">
+              <ShieldCheck size={16} strokeWidth={1.5} className="text-foreground/50" />
+              <span className="text-foreground/85">Repaired for life by the atelier</span>
+              <span className="ml-auto text-[10px] uppercase tracking-[0.3em] text-foreground/45">Promise</span>
+            </li>
+          </ul>
+        </div>
+      </section>
 
-          <div className="mt-10 border-t border-foreground/15 pt-8">
-            <p className="text-xs uppercase tracking-[0.3em] text-foreground/50 mb-4">The details</p>
-            <ul className="space-y-3">
-              {product.details.map((d: string) => (
-                <li key={d} className="flex gap-3 text-sm text-foreground/80"><span className="text-foreground/40">—</span>{d}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="mt-8 border-t border-foreground/15 pt-8 grid grid-cols-2 gap-6 text-sm">
-            <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-foreground/50 mb-2">Material</p>
-              <p className="text-foreground/80">{product.material}</p>
-            </div>
-            <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-foreground/50 mb-2">Origin</p>
-              <p className="text-foreground/80">{product.origin}</p>
-            </div>
-            <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-foreground/50 mb-2">Weight</p>
-              <p className="text-foreground/80">1,420 g · medium-heavy</p>
-            </div>
-            <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-foreground/50 mb-2">Edition</p>
-              <p className="text-foreground/80">Open · made to order</p>
-            </div>
-          </div>
-
-          {/* The fabric story */}
-          <div className="mt-12 border-t border-foreground/15 pt-8 reveal">
-            <div className="flex items-center gap-3 mb-4">
-              <Scissors size={16} strokeWidth={1.5} />
-              <p className="text-xs uppercase tracking-[0.3em] text-foreground/50">The fabric</p>
-            </div>
-            <h3 className="font-display text-3xl md:text-4xl leading-tight mb-3">A cloth that <span className="font-serif-it italic font-normal">remembers</span>.</h3>
-            <p className="text-foreground/75 leading-relaxed">
-              Woven on a single Dornier loom outside Biella. The yarn is twice as long-staple as the mill standard, which is why the surface refuses to pill and the drape only deepens. It will look better in five years than it does today — that is a promise we are happy to put in writing.
+      {/* The piece — fabric pull quote */}
+      <section className="px-8 md:px-16 lg:px-24 py-32 md:py-44 border-t border-foreground/10">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-20">
+          <p className="md:col-span-3 text-[11px] uppercase tracking-[0.3em] text-foreground/50 reveal">§ 01 — The piece</p>
+          <div className="md:col-span-9 reveal">
+            <p className="font-display text-[7vw] md:text-[3.4vw] leading-[1.05]">
+              A cloth that <span className="font-serif-it italic font-normal">remembers</span>. Woven on a single Dornier loom outside Biella, with yarn twice the staple length of the mill standard.
+            </p>
+            <p className="mt-10 max-w-2xl text-foreground/65 leading-relaxed">
+              The surface refuses to pill and the drape only deepens. It will look better in five years than it does today — a promise we are happy to put in writing.
             </p>
           </div>
+        </div>
+      </section>
 
-          {/* Sustainability */}
-          <div className="mt-12 border-t border-foreground/15 pt-8 reveal">
-            <div className="flex items-center gap-3 mb-4">
-              <Leaf size={16} strokeWidth={1.5} />
-              <p className="text-xs uppercase tracking-[0.3em] text-foreground/50">Quietly responsible</p>
-            </div>
-            <ul className="space-y-3 text-sm text-foreground/80">
-              <li className="flex gap-3"><span className="text-foreground/40 font-display">01</span>Made to order — we do not hold stock, we do not destroy unsold goods.</li>
-              <li className="flex gap-3"><span className="text-foreground/40 font-display">02</span>Single-source mill, fewer than 80km between fibre and finished cloth.</li>
-              <li className="flex gap-3"><span className="text-foreground/40 font-display">03</span>Repaired for life by the atelier that built it. Send it back any time.</li>
-              <li className="flex gap-3"><span className="text-foreground/40 font-display">04</span>Packed in undyed muslin and an unbleached cardboard sleeve. No plastic.</li>
-            </ul>
-          </div>
-
-          {/* Care */}
-          <div className="mt-12 border-t border-foreground/15 pt-8 reveal">
-            <div className="flex items-center gap-3 mb-4">
-              <Sparkles size={16} strokeWidth={1.5} />
-              <p className="text-xs uppercase tracking-[0.3em] text-foreground/50">How to live with it</p>
-            </div>
-            <div className="grid grid-cols-2 gap-4 text-sm">
+      {/* Specifications — clean two-column ledger */}
+      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-20 mb-16">
+          <p className="md:col-span-3 text-[11px] uppercase tracking-[0.3em] text-foreground/50 reveal">§ 02 — Specifications</p>
+          <h2 className="md:col-span-9 font-display text-[12vw] md:text-[5vw] leading-[0.88] reveal">
+            Every measure, <span className="font-serif-it italic font-normal">written down</span>.
+          </h2>
+        </div>
+        <div className="grid md:grid-cols-12 gap-10 md:gap-20">
+          <div className="md:col-start-4 md:col-span-9">
+            <dl className="divide-y divide-foreground/10 border-y border-foreground/10">
               {[
-                { t: "Brush", d: "Horsehair brush after each wear. With the grain." },
-                { t: "Air", d: "24 hours on a wide wooden hanger before storing." },
-                { t: "Clean", d: "Dry-clean once a season. No more, ideally less." },
-                { t: "Press", d: "Cool iron through a cotton cloth, lapels by hand." },
-              ].map((c) => (
-                <div key={c.t} className="p-4 border border-foreground/15">
-                  <p className="font-display text-xl mb-1">{c.t}</p>
-                  <p className="text-foreground/70 text-xs leading-relaxed">{c.d}</p>
+                { k: "Material", v: product.material },
+                { k: "Origin", v: product.origin },
+                ...SPECS,
+              ].map((row) => (
+                <div key={row.k} className="grid grid-cols-12 gap-6 py-6">
+                  <dt className="col-span-4 text-[11px] uppercase tracking-[0.3em] text-foreground/50">{row.k}</dt>
+                  <dd className="col-span-8 text-base text-foreground/85">{row.v}</dd>
                 </div>
               ))}
+            </dl>
+
+            <div className="mt-10">
+              <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-4">The build</p>
+              <ul className="space-y-4">
+                {product.details.map((d: string) => (
+                  <li key={d} className="flex gap-4 text-base text-foreground/85"><span className="text-foreground/30 font-display">—</span>{d}</li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Styled with — three vignettes */}
+      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-20 mb-16">
+          <p className="md:col-span-3 text-[11px] uppercase tracking-[0.3em] text-foreground/50 reveal">§ 03 — In the wardrobe</p>
+          <h2 className="md:col-span-9 font-display text-[12vw] md:text-[5vw] leading-[0.88] reveal">
+            Three ways to <span className="font-serif-it italic font-normal">wear it</span>.
+          </h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6 md:gap-10">
+          {STYLED_WITH.map((s, i) => (
+            <article key={s.title} className="reveal" style={{ transitionDelay: `${i * 100}ms` }}>
+              <div className="aspect-[4/5] bg-[color:var(--muted-warm)] relative overflow-hidden">
+                <img src={product.image} alt="" className="absolute inset-0 m-auto h-[75%] w-[75%] object-contain float-soft" />
+                <span className="absolute top-5 left-5 text-[10px] uppercase tracking-[0.3em] text-foreground/55">0{i + 1}</span>
+              </div>
+              <h3 className="mt-6 font-display text-3xl">{s.title}</h3>
+              <p className="mt-3 text-foreground/65 leading-relaxed max-w-xs">{s.note}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* Atelier note — quiet editorial */}
+      <section className="px-8 md:px-16 lg:px-24 py-40 border-t border-foreground/10 bg-[color:var(--muted-warm)]">
+        <div className="max-w-4xl mx-auto text-center reveal">
+          <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/55 mb-10">A note from the atelier</p>
+          <p className="font-display text-[8vw] md:text-[3.6vw] leading-[1.05]">
+            "We make <span className="font-serif-it italic font-normal">forty pieces a week</span>. No faster. The cloth decides when it is ready, not the calendar."
+          </p>
+          <p className="mt-10 text-[11px] uppercase tracking-[0.3em] text-foreground/55">
+            Marco Pellegrini — head of atelier, Florence
+          </p>
+        </div>
+      </section>
+
+      {/* Sustainability — clean four-column ledger */}
+      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-20 mb-16">
+          <p className="md:col-span-3 text-[11px] uppercase tracking-[0.3em] text-foreground/50 reveal">§ 04 — Quietly responsible</p>
+          <h2 className="md:col-span-9 font-display text-[12vw] md:text-[5vw] leading-[0.88] reveal">
+            What we promise, <span className="font-serif-it italic font-normal">in plain text</span>.
+          </h2>
+        </div>
+        <div className="grid md:grid-cols-4 gap-px bg-foreground/10 border border-foreground/10">
+          {SUSTAINABILITY.map((s, i) => (
+            <div key={s.n} className="bg-background p-8 md:p-10 reveal" style={{ transitionDelay: `${i * 80}ms` }}>
+              <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50">— {s.n}</p>
+              <h3 className="mt-8 font-display text-3xl">{s.t}</h3>
+              <p className="mt-4 text-sm text-foreground/65 leading-relaxed">{s.d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Care — clean editorial */}
+      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-20">
+          <div className="md:col-span-5 reveal">
+            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-6">§ 05 — How to live with it</p>
+            <h2 className="font-display text-[12vw] md:text-[4.5vw] leading-[0.9]">Care, <span className="font-serif-it italic font-normal">lightly</span>.</h2>
+            <p className="mt-8 text-foreground/65 leading-relaxed max-w-md">
+              The fewer hands that touch it, the longer it lasts. A horsehair brush and a wide wooden hanger will see you through a decade.
+            </p>
+          </div>
+          <ol className="md:col-span-7 divide-y divide-foreground/10 border-y border-foreground/10">
+            {CARE.map((c, i) => (
+              <li key={c.t} className="grid grid-cols-12 gap-6 py-8 reveal" style={{ transitionDelay: `${i * 60}ms` }}>
+                <span className="col-span-2 font-display text-2xl text-foreground/40">0{i + 1}</span>
+                <h3 className="col-span-3 font-display text-2xl">{c.t}</h3>
+                <p className="col-span-7 text-foreground/70 leading-relaxed">{c.d}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
       {/* Size guide table */}
-      <section className="px-6 md:px-10 py-24 border-t border-foreground/10">
+      <section id="size-guide" className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10">
         <div className="grid md:grid-cols-12 gap-10 items-end mb-10">
           <div className="md:col-span-7">
-            <div className="flex items-center gap-3 mb-4">
-              <Ruler size={16} strokeWidth={1.5} />
-              <p className="text-xs uppercase tracking-[0.3em] text-foreground/50">Measurements · centimetres</p>
-            </div>
+            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-6">§ 06 — Measurements · centimetres</p>
             <h2 className="font-display text-[12vw] md:text-[6vw] leading-[0.85]">SIZE / <span className="font-serif-it italic font-normal">guide</span></h2>
           </div>
           <p className="md:col-span-5 text-foreground/70 font-serif-it italic">
@@ -337,10 +433,10 @@ function ProductPage() {
       </section>
 
       {/* Journey */}
-      <section className="px-6 md:px-10 py-24 border-t border-foreground/10 bg-[color:var(--muted-warm)]">
+      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10 bg-[color:var(--muted-warm)]">
         <div className="grid md:grid-cols-12 gap-10 mb-12">
           <div className="md:col-span-5">
-            <p className="text-xs uppercase tracking-[0.3em] text-foreground/50 mb-4">From mill to mailbox</p>
+            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-6">§ 07 — From mill to mailbox</p>
             <h2 className="font-display text-[12vw] md:text-[5.5vw] leading-[0.85]">FOURTEEN / <span className="font-serif-it italic font-normal">days</span></h2>
           </div>
           <p className="md:col-span-7 text-foreground/75 text-lg leading-relaxed">
@@ -359,10 +455,10 @@ function ProductPage() {
       </section>
 
       {/* Reviews */}
-      <section className="px-6 md:px-10 py-24 border-t border-foreground/10">
+      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10">
         <div className="grid md:grid-cols-12 gap-10 items-end mb-12">
           <div className="md:col-span-7">
-            <p className="text-xs uppercase tracking-[0.3em] text-foreground/50 mb-4">128 verified owners</p>
+            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-6">§ 08 — 128 verified owners</p>
             <h2 className="font-display text-[12vw] md:text-[6vw] leading-[0.85]">
               4.9 / <span className="font-serif-it italic font-normal">from people who own one</span>
             </h2>
@@ -395,10 +491,10 @@ function ProductPage() {
       </section>
 
       {/* FAQ */}
-      <section className="px-6 md:px-10 py-24 border-t border-foreground/10">
+      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10">
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-4">
-            <p className="text-xs uppercase tracking-[0.3em] text-foreground/50 mb-4">In case you wondered</p>
+            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-6">§ 09 — In case you wondered</p>
             <h2 className="font-display text-[12vw] md:text-[5vw] leading-[0.85]">FAQ /</h2>
           </div>
           <div className="md:col-span-8 border-t border-foreground/15">
@@ -407,13 +503,13 @@ function ProductPage() {
                 <button
                   data-cursor-hover
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full flex items-center justify-between py-6 text-left"
+                  className="w-full flex items-center justify-between py-8 text-left"
                 >
-                  <span className="font-display text-xl md:text-2xl">{f.q}</span>
+                  <span className="font-display text-2xl md:text-3xl">{f.q}</span>
                   <ChevronDown size={18} className={`transition-transform ${openFaq === i ? "rotate-180" : ""}`} />
                 </button>
-                <div className={`grid transition-all duration-500 ease-out ${openFaq === i ? "grid-rows-[1fr] opacity-100 pb-6" : "grid-rows-[0fr] opacity-0"}`}>
-                  <p className="overflow-hidden text-foreground/75 leading-relaxed max-w-2xl">{f.a}</p>
+                <div className={`grid transition-all duration-500 ease-out ${openFaq === i ? "grid-rows-[1fr] opacity-100 pb-8" : "grid-rows-[0fr] opacity-0"}`}>
+                  <p className="overflow-hidden text-foreground/75 leading-relaxed max-w-2xl text-lg">{f.a}</p>
                 </div>
               </div>
             ))}
@@ -421,18 +517,37 @@ function ProductPage() {
         </div>
       </section>
 
+      {/* Newsletter */}
+      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10 bg-foreground text-background">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-20 items-end">
+          <div className="md:col-span-7">
+            <p className="text-[11px] uppercase tracking-[0.3em] text-background/55 mb-6">§ 10 — Letters from Florence</p>
+            <h2 className="font-display text-[12vw] md:text-[5vw] leading-[0.88]">
+              One letter, <span className="font-serif-it italic font-normal">every other Friday</span>.
+            </h2>
+            <p className="mt-6 text-background/70 max-w-lg leading-relaxed">No drops, no discounts. Just a short note on what was cut that week and what we are reading at lunch.</p>
+          </div>
+          <form className="md:col-span-5 flex border-b border-background/40 pb-3">
+            <Mail size={18} className="self-center mr-3 text-background/60" />
+            <input type="email" placeholder="your@email.com" className="flex-1 bg-transparent text-background placeholder:text-background/40 outline-none text-base py-2" />
+            <button data-cursor-hover className="text-[11px] uppercase tracking-[0.3em] text-background hover:text-[color:var(--accent-hot)] transition-colors">Subscribe →</button>
+          </form>
+        </div>
+      </section>
+
       {/* Recommended */}
-      <section className="px-6 md:px-10 py-20 border-t border-foreground/10">
-        <h2 className="font-display text-[10vw] md:text-[6vw] leading-[0.85] mb-12">
+      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10">
+        <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-6">§ 11 — Continue browsing</p>
+        <h2 className="font-display text-[10vw] md:text-[6vw] leading-[0.85] mb-16">
           PAIRS / <span className="font-serif-it italic font-normal">well with</span>
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {recs.map((p) => (
             <Link key={p.slug} to="/product/$slug" params={{ slug: p.slug }} data-cursor-hover className="group">
               <div className="aspect-[4/5] bg-[color:var(--muted-warm)] relative overflow-hidden">
                 <img src={p.image} alt={p.name} className="absolute inset-0 m-auto h-[85%] w-[85%] object-contain float-soft transition-transform duration-700 group-hover:scale-110" />
               </div>
-              <div className="mt-4 flex items-baseline justify-between">
+              <div className="mt-6 flex items-baseline justify-between">
                 <h3 className="font-display text-2xl">{p.name}</h3>
                 <span className="font-serif-it">{p.price}</span>
               </div>
