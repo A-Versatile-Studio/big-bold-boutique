@@ -283,27 +283,12 @@ function ProductPage() {
         </div>
       </section>
 
-      {/* The piece — fabric pull quote */}
-      <section className="px-8 md:px-16 lg:px-24 py-32 md:py-44 border-t border-foreground/10">
-        <div className="grid md:grid-cols-12 gap-10 md:gap-20">
-          <p className="md:col-span-3 text-[11px] uppercase tracking-[0.3em] text-foreground/50 reveal">§ 01 — The piece</p>
-          <div className="md:col-span-9 reveal">
-            <p className="font-display text-[7vw] md:text-[3.4vw] leading-[1.05]">
-              A cloth that <span className="font-serif-it italic font-normal">remembers</span>. Woven on a single Dornier loom outside Biella, with yarn twice the staple length of the mill standard.
-            </p>
-            <p className="mt-10 max-w-2xl text-foreground/65 leading-relaxed">
-              The surface refuses to pill and the drape only deepens. It will look better in five years than it does today — a promise we are happy to put in writing.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Specifications — clean two-column ledger */}
-      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10">
-        <div className="grid md:grid-cols-12 gap-10 md:gap-20 mb-16">
-          <p className="md:col-span-3 text-[11px] uppercase tracking-[0.3em] text-foreground/50 reveal">§ 02 — Specifications</p>
-          <h2 className="md:col-span-9 font-display text-[12vw] md:text-[5vw] leading-[0.88] reveal">
-            Every measure, <span className="font-serif-it italic font-normal">written down</span>.
+      {/* § 01 SPECIFICATIONS — top because it answers "what am I buying?" */}
+      <section className="px-8 md:px-16 lg:px-24 pt-24 md:pt-32 pb-24 border-t border-foreground/10">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-20 mb-12">
+          <p className="md:col-span-3 text-[11px] uppercase tracking-[0.3em] text-foreground/50 reveal">§ 01 — Specifications</p>
+          <h2 className="md:col-span-9 font-serif-it italic text-3xl md:text-4xl text-foreground/90 leading-tight reveal">
+            Every measure, written down.
           </h2>
         </div>
         <div className="grid md:grid-cols-12 gap-10 md:gap-20">
@@ -325,7 +310,7 @@ function ProductPage() {
               <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-4">The build</p>
               <ul className="space-y-4">
                 {product.details.map((d: string) => (
-                  <li key={d} className="flex gap-4 text-base text-foreground/85"><span className="text-foreground/30 font-display">—</span>{d}</li>
+                  <li key={d} className="flex gap-4 text-base text-foreground/85"><span className="text-foreground/30">—</span>{d}</li>
                 ))}
               </ul>
             </div>
@@ -333,90 +318,14 @@ function ProductPage() {
         </div>
       </section>
 
-      {/* Styled with — three vignettes */}
-      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10">
-        <div className="grid md:grid-cols-12 gap-10 md:gap-20 mb-16">
-          <p className="md:col-span-3 text-[11px] uppercase tracking-[0.3em] text-foreground/50 reveal">§ 03 — In the wardrobe</p>
-          <h2 className="md:col-span-9 font-display text-[12vw] md:text-[5vw] leading-[0.88] reveal">
-            Three ways to <span className="font-serif-it italic font-normal">wear it</span>.
-          </h2>
-        </div>
-        <div className="grid md:grid-cols-3 gap-6 md:gap-10">
-          {STYLED_WITH.map((s, i) => (
-            <article key={s.title} className="reveal" style={{ transitionDelay: `${i * 100}ms` }}>
-              <div className="aspect-[4/5] bg-[color:var(--muted-warm)] relative overflow-hidden">
-                <img src={product.image} alt="" className="absolute inset-0 m-auto h-[75%] w-[75%] object-contain float-soft" />
-                <span className="absolute top-5 left-5 text-[10px] uppercase tracking-[0.3em] text-foreground/55">0{i + 1}</span>
-              </div>
-              <h3 className="mt-6 font-display text-3xl">{s.title}</h3>
-              <p className="mt-3 text-foreground/65 leading-relaxed max-w-xs">{s.note}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* Atelier note — quiet editorial */}
-      <section className="px-8 md:px-16 lg:px-24 py-40 border-t border-foreground/10 bg-[color:var(--muted-warm)]">
-        <div className="max-w-4xl mx-auto text-center reveal">
-          <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/55 mb-10">A note from the atelier</p>
-          <p className="font-display text-[8vw] md:text-[3.6vw] leading-[1.05]">
-            "We make <span className="font-serif-it italic font-normal">forty pieces a week</span>. No faster. The cloth decides when it is ready, not the calendar."
-          </p>
-          <p className="mt-10 text-[11px] uppercase tracking-[0.3em] text-foreground/55">
-            Marco Pellegrini — head of atelier, Florence
-          </p>
-        </div>
-      </section>
-
-      {/* Sustainability — clean four-column ledger */}
-      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10">
-        <div className="grid md:grid-cols-12 gap-10 md:gap-20 mb-16">
-          <p className="md:col-span-3 text-[11px] uppercase tracking-[0.3em] text-foreground/50 reveal">§ 04 — Quietly responsible</p>
-          <h2 className="md:col-span-9 font-display text-[12vw] md:text-[5vw] leading-[0.88] reveal">
-            What we promise, <span className="font-serif-it italic font-normal">in plain text</span>.
-          </h2>
-        </div>
-        <div className="grid md:grid-cols-4 gap-px bg-foreground/10 border border-foreground/10">
-          {SUSTAINABILITY.map((s, i) => (
-            <div key={s.n} className="bg-background p-8 md:p-10 reveal" style={{ transitionDelay: `${i * 80}ms` }}>
-              <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50">— {s.n}</p>
-              <h3 className="mt-8 font-display text-3xl">{s.t}</h3>
-              <p className="mt-4 text-sm text-foreground/65 leading-relaxed">{s.d}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Care — clean editorial */}
-      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10">
-        <div className="grid md:grid-cols-12 gap-10 md:gap-20">
-          <div className="md:col-span-5 reveal">
-            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-6">§ 05 — How to live with it</p>
-            <h2 className="font-display text-[12vw] md:text-[4.5vw] leading-[0.9]">Care, <span className="font-serif-it italic font-normal">lightly</span>.</h2>
-            <p className="mt-8 text-foreground/65 leading-relaxed max-w-md">
-              The fewer hands that touch it, the longer it lasts. A horsehair brush and a wide wooden hanger will see you through a decade.
-            </p>
-          </div>
-          <ol className="md:col-span-7 divide-y divide-foreground/10 border-y border-foreground/10">
-            {CARE.map((c, i) => (
-              <li key={c.t} className="grid grid-cols-12 gap-6 py-8 reveal" style={{ transitionDelay: `${i * 60}ms` }}>
-                <span className="col-span-2 font-display text-2xl text-foreground/40">0{i + 1}</span>
-                <h3 className="col-span-3 font-display text-2xl">{c.t}</h3>
-                <p className="col-span-7 text-foreground/70 leading-relaxed">{c.d}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* Size guide table */}
-      <section id="size-guide" className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10">
+      {/* § 02 SIZE GUIDE */}
+      <section id="size-guide" className="px-8 md:px-16 lg:px-24 py-24 border-t border-foreground/10">
         <div className="grid md:grid-cols-12 gap-10 items-end mb-10">
           <div className="md:col-span-7">
-            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-6">§ 06 — Measurements · centimetres</p>
-            <h2 className="font-display text-[12vw] md:text-[6vw] leading-[0.85]">SIZE / <span className="font-serif-it italic font-normal">guide</span></h2>
+            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-4">§ 02 — Size · centimetres</p>
+            <h2 className="font-serif-it italic text-3xl md:text-4xl text-foreground/90">Find your fit.</h2>
           </div>
-          <p className="md:col-span-5 text-foreground/70 font-serif-it italic">
+          <p className="md:col-span-5 text-foreground/70 leading-relaxed">
             Measured flat, garment laid on a table. If you sit between two sizes, size up for the silhouette we shoot, down for a closer fit.
           </p>
         </div>
@@ -431,10 +340,10 @@ function ProductPage() {
                 <th className="py-4 pr-6">Sleeve</th>
               </tr>
             </thead>
-            <tbody className="font-display text-2xl">
+            <tbody className="text-base">
               {SIZE_GUIDE.map((row) => (
                 <tr key={row.size} className={`border-t border-foreground/10 transition-colors ${size === row.size ? "bg-foreground/5" : ""}`}>
-                  <td className="py-4 pr-6">{row.size}</td>
+                  <td className="py-4 pr-6 uppercase tracking-[0.2em] text-foreground/80">{row.size}</td>
                   <td className="py-4 pr-6">{row.chest}</td>
                   <td className="py-4 pr-6">{row.shoulder}</td>
                   <td className="py-4 pr-6">{row.length}</td>
@@ -446,14 +355,113 @@ function ProductPage() {
         </div>
       </section>
 
-      {/* Journey */}
-      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10 bg-[color:var(--muted-warm)]">
+      {/* § 03 CARE */}
+      <section className="px-8 md:px-16 lg:px-24 py-24 border-t border-foreground/10">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-20">
+          <div className="md:col-span-5 reveal">
+            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-4">§ 03 — Care</p>
+            <h2 className="font-serif-it italic text-3xl md:text-4xl text-foreground/90">Care, lightly.</h2>
+            <p className="mt-6 text-foreground/65 leading-relaxed max-w-md">
+              The fewer hands that touch it, the longer it lasts. A horsehair brush and a wide wooden hanger will see you through a decade.
+            </p>
+          </div>
+          <ol className="md:col-span-7 divide-y divide-foreground/10 border-y border-foreground/10">
+            {CARE.map((c, i) => (
+              <li key={c.t} className="grid grid-cols-12 gap-6 py-6 reveal" style={{ transitionDelay: `${i * 60}ms` }}>
+                <span className="col-span-2 text-xs uppercase tracking-[0.3em] text-foreground/40 pt-1">0{i + 1}</span>
+                <h3 className="col-span-3 text-base uppercase tracking-[0.15em] text-foreground/85 pt-1">{c.t}</h3>
+                <p className="col-span-7 text-foreground/70 leading-relaxed">{c.d}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* § 04 SHIPPING & RETURNS — NEW */}
+      <section className="px-8 md:px-16 lg:px-24 py-24 border-t border-foreground/10">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-20 mb-12">
+          <div className="md:col-span-5 reveal">
+            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-4">§ 04 — Shipping & returns</p>
+            <h2 className="font-serif-it italic text-3xl md:text-4xl text-foreground/90">From our door to yours.</h2>
+            <p className="mt-6 text-foreground/65 leading-relaxed max-w-md">
+              All orders are tracked, signed for and carbon-offset. Returns are free within the EU and UK; refunds are processed within five working days of arrival.
+            </p>
+            <ul className="mt-10 space-y-4 text-sm text-foreground/80">
+              <li className="flex gap-3"><Truck size={16} className="text-foreground/40 mt-0.5" /> Free returns within EU & UK</li>
+              <li className="flex gap-3"><Globe2 size={16} className="text-foreground/40 mt-0.5" /> Duties included for US & CA orders</li>
+              <li className="flex gap-3"><Clock size={16} className="text-foreground/40 mt-0.5" /> Thirty days to send it back</li>
+            </ul>
+          </div>
+          <div className="md:col-span-7 reveal">
+            <table className="w-full text-left border-t border-foreground/15">
+              <thead>
+                <tr className="text-[11px] uppercase tracking-[0.3em] text-foreground/55">
+                  <th className="py-4 pr-4">Region</th>
+                  <th className="py-4 pr-4">Time</th>
+                  <th className="py-4 pr-4">Cost</th>
+                  <th className="py-4">Carrier</th>
+                </tr>
+              </thead>
+              <tbody>
+                {SHIPPING.map((s) => (
+                  <tr key={s.region} className="border-t border-foreground/10 text-sm">
+                    <td className="py-5 pr-4 text-foreground/85">{s.region}</td>
+                    <td className="py-5 pr-4 text-foreground/70">{s.time}</td>
+                    <td className="py-5 pr-4 text-foreground/70">{s.cost}</td>
+                    <td className="py-5 text-foreground/70">{s.carrier}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* § 05 WHAT'S IN THE BOX — NEW */}
+      <section className="px-8 md:px-16 lg:px-24 py-24 border-t border-foreground/10 bg-[color:var(--muted-warm)]">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-20 mb-12">
+          <div className="md:col-span-5 reveal">
+            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-4">§ 05 — In the box</p>
+            <h2 className="font-serif-it italic text-3xl md:text-4xl text-foreground/90">What arrives at your door.</h2>
+          </div>
+          <p className="md:col-span-7 text-foreground/70 leading-relaxed self-end max-w-xl">
+            No tissue confetti, no plastic clips. Four things, considered.
+          </p>
+        </div>
+        <div className="grid md:grid-cols-4 gap-px bg-foreground/10 border border-foreground/10">
+          {IN_THE_BOX.map((b, i) => (
+            <div key={b.t} className="bg-background p-8 reveal" style={{ transitionDelay: `${i * 60}ms` }}>
+              <Package size={18} className="text-foreground/40" />
+              <h3 className="mt-6 text-base uppercase tracking-[0.15em] text-foreground/85">{b.t}</h3>
+              <p className="mt-3 text-sm text-foreground/65 leading-relaxed">{b.d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* § 06 THE CLOTH — the storytelling */}
+      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-20">
+          <p className="md:col-span-3 text-[11px] uppercase tracking-[0.3em] text-foreground/50 reveal">§ 06 — The cloth</p>
+          <div className="md:col-span-9 reveal">
+            <p className="font-serif-it italic text-2xl md:text-[2.2vw] leading-[1.35] text-foreground/85">
+              A cloth that remembers. Woven on a single Dornier loom outside Biella, with yarn twice the staple length of the mill standard.
+            </p>
+            <p className="mt-8 max-w-2xl text-foreground/65 leading-relaxed">
+              The surface refuses to pill and the drape only deepens. It will look better in five years than it does today — a promise we are happy to put in writing.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* § 07 JOURNEY */}
+      <section className="px-8 md:px-16 lg:px-24 py-24 border-t border-foreground/10">
         <div className="grid md:grid-cols-12 gap-10 mb-12">
           <div className="md:col-span-5">
-            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-6">§ 07 — From mill to mailbox</p>
-            <h2 className="font-display text-[12vw] md:text-[5.5vw] leading-[0.85]">FOURTEEN / <span className="font-serif-it italic font-normal">days</span></h2>
+            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-4">§ 07 — Fourteen days</p>
+            <h2 className="font-serif-it italic text-3xl md:text-4xl text-foreground/90">From mill to mailbox.</h2>
           </div>
-          <p className="md:col-span-7 text-foreground/75 text-lg leading-relaxed">
+          <p className="md:col-span-7 text-foreground/70 leading-relaxed self-end">
             Every piece is cut after you order it. Here is what happens in the two weeks between your confirmation email and the courier knocking on your door.
           </p>
         </div>
@@ -461,20 +469,61 @@ function ProductPage() {
           {JOURNEY.map((j, i) => (
             <li key={j.day} className="reveal bg-background p-6 border border-foreground/10" style={{ transitionDelay: `${i * 80}ms` }}>
               <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50">{j.day}</p>
-              <h3 className="font-display text-2xl mt-2">{j.title}</h3>
+              <h3 className="text-lg text-foreground/90 mt-3">{j.title}</h3>
               <p className="text-sm text-foreground/70 mt-3 leading-relaxed">{j.note}</p>
             </li>
           ))}
         </ol>
       </section>
 
-      {/* Reviews */}
-      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10">
+      {/* § 08 SUSTAINABILITY */}
+      <section className="px-8 md:px-16 lg:px-24 py-24 border-t border-foreground/10">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-20 mb-12">
+          <p className="md:col-span-3 text-[11px] uppercase tracking-[0.3em] text-foreground/50 reveal">§ 08 — Quietly responsible</p>
+          <h2 className="md:col-span-9 font-serif-it italic text-3xl md:text-4xl text-foreground/90 reveal">
+            What we promise, in plain text.
+          </h2>
+        </div>
+        <div className="grid md:grid-cols-4 gap-px bg-foreground/10 border border-foreground/10">
+          {SUSTAINABILITY.map((s, i) => (
+            <div key={s.n} className="bg-background p-8 reveal" style={{ transitionDelay: `${i * 80}ms` }}>
+              <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50">— {s.n}</p>
+              <h3 className="mt-6 text-base uppercase tracking-[0.15em] text-foreground/85">{s.t}</h3>
+              <p className="mt-3 text-sm text-foreground/65 leading-relaxed">{s.d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* § 09 STYLED WITH */}
+      <section className="px-8 md:px-16 lg:px-24 py-24 border-t border-foreground/10">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-20 mb-12">
+          <p className="md:col-span-3 text-[11px] uppercase tracking-[0.3em] text-foreground/50 reveal">§ 09 — In the wardrobe</p>
+          <h2 className="md:col-span-9 font-serif-it italic text-3xl md:text-4xl text-foreground/90 reveal">
+            Three ways to wear it.
+          </h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6 md:gap-10">
+          {STYLED_WITH.map((s, i) => (
+            <article key={s.title} className="reveal" style={{ transitionDelay: `${i * 100}ms` }}>
+              <div className="aspect-[4/5] bg-[color:var(--muted-warm)] relative overflow-hidden">
+                <img src={product.image} alt="" className="absolute inset-0 m-auto h-[75%] w-[75%] object-contain float-soft" />
+                <span className="absolute top-5 left-5 text-[10px] uppercase tracking-[0.3em] text-foreground/55">0{i + 1}</span>
+              </div>
+              <h3 className="mt-5 text-lg text-foreground/90">{s.title}</h3>
+              <p className="mt-2 text-sm text-foreground/65 leading-relaxed max-w-xs">{s.note}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* § 10 REVIEWS */}
+      <section className="px-8 md:px-16 lg:px-24 py-24 border-t border-foreground/10">
         <div className="grid md:grid-cols-12 gap-10 items-end mb-12">
           <div className="md:col-span-7">
-            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-6">§ 08 — 128 verified owners</p>
-            <h2 className="font-display text-[12vw] md:text-[6vw] leading-[0.85]">
-              4.9 / <span className="font-serif-it italic font-normal">from people who own one</span>
+            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-4">§ 10 — 128 verified owners</p>
+            <h2 className="font-serif-it italic text-3xl md:text-4xl text-foreground/90">
+              4.9 stars, from people who own one.
             </h2>
           </div>
           <div className="md:col-span-5 grid grid-cols-5 gap-2 text-[11px] uppercase tracking-[0.2em] text-foreground/55">
@@ -504,12 +553,25 @@ function ProductPage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10">
+      {/* § 11 ATELIER NOTE */}
+      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10 bg-[color:var(--muted-warm)]">
+        <div className="max-w-3xl mx-auto text-center reveal">
+          <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/55 mb-8">§ 11 — A note from the atelier</p>
+          <p className="font-serif-it italic text-2xl md:text-[2.4vw] leading-[1.35] text-foreground/85">
+            "We make forty pieces a week. No faster. The cloth decides when it is ready, not the calendar."
+          </p>
+          <p className="mt-8 text-[11px] uppercase tracking-[0.3em] text-foreground/55">
+            Marco Pellegrini — head of atelier, Florence
+          </p>
+        </div>
+      </section>
+
+      {/* § 12 FAQ */}
+      <section className="px-8 md:px-16 lg:px-24 py-24 border-t border-foreground/10">
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-4">
-            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-6">§ 09 — In case you wondered</p>
-            <h2 className="font-display text-[12vw] md:text-[5vw] leading-[0.85]">FAQ /</h2>
+            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-4">§ 12 — In case you wondered</p>
+            <h2 className="font-serif-it italic text-3xl md:text-4xl text-foreground/90">Questions, answered.</h2>
           </div>
           <div className="md:col-span-8 border-t border-foreground/15">
             {FAQS.map((f, i) => (
@@ -517,13 +579,13 @@ function ProductPage() {
                 <button
                   data-cursor-hover
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full flex items-center justify-between py-8 text-left"
+                  className="w-full flex items-center justify-between py-6 text-left gap-6"
                 >
-                  <span className="font-display text-2xl md:text-3xl">{f.q}</span>
+                  <span className="text-lg md:text-xl text-foreground/90">{f.q}</span>
                   <ChevronDown size={18} className={`transition-transform ${openFaq === i ? "rotate-180" : ""}`} />
                 </button>
-                <div className={`grid transition-all duration-500 ease-out ${openFaq === i ? "grid-rows-[1fr] opacity-100 pb-8" : "grid-rows-[0fr] opacity-0"}`}>
-                  <p className="overflow-hidden text-foreground/75 leading-relaxed max-w-2xl text-lg">{f.a}</p>
+                <div className={`grid transition-all duration-500 ease-out ${openFaq === i ? "grid-rows-[1fr] opacity-100 pb-6" : "grid-rows-[0fr] opacity-0"}`}>
+                  <p className="overflow-hidden text-foreground/70 leading-relaxed max-w-2xl">{f.a}</p>
                 </div>
               </div>
             ))}
@@ -531,13 +593,13 @@ function ProductPage() {
         </div>
       </section>
 
-      {/* Newsletter */}
-      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10 bg-foreground text-background">
+      {/* § 13 NEWSLETTER */}
+      <section className="px-8 md:px-16 lg:px-24 py-24 border-t border-foreground/10 bg-foreground text-background">
         <div className="grid md:grid-cols-12 gap-10 md:gap-20 items-end">
           <div className="md:col-span-7">
-            <p className="text-[11px] uppercase tracking-[0.3em] text-background/55 mb-6">§ 10 — Letters from Florence</p>
-            <h2 className="font-display text-[12vw] md:text-[5vw] leading-[0.88]">
-              One letter, <span className="font-serif-it italic font-normal">every other Friday</span>.
+            <p className="text-[11px] uppercase tracking-[0.3em] text-background/55 mb-4">§ 13 — Letters from Florence</p>
+            <h2 className="font-serif-it italic text-3xl md:text-4xl">
+              One letter, every other Friday.
             </h2>
             <p className="mt-6 text-background/70 max-w-lg leading-relaxed">No drops, no discounts. Just a short note on what was cut that week and what we are reading at lunch.</p>
           </div>
@@ -549,24 +611,70 @@ function ProductPage() {
         </div>
       </section>
 
-      {/* Recommended */}
-      <section className="px-8 md:px-16 lg:px-24 py-32 border-t border-foreground/10">
-        <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-6">§ 11 — Continue browsing</p>
-        <h2 className="font-display text-[10vw] md:text-[6vw] leading-[0.85] mb-16">
-          PAIRS / <span className="font-serif-it italic font-normal">well with</span>
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-          {recs.map((p) => (
-            <Link key={p.slug} to="/product/$slug" params={{ slug: p.slug }} data-cursor-hover className="group">
+      {/* § 14 PAIRS WELL WITH — richer module */}
+      <section className="px-8 md:px-16 lg:px-24 py-24 border-t border-foreground/10">
+        <div className="grid md:grid-cols-12 gap-10 items-end mb-12">
+          <div className="md:col-span-7">
+            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/50 mb-4 inline-flex items-center gap-2">
+              <Sparkles size={12} /> § 14 — Hand-picked by the studio
+            </p>
+            <h2 className="font-serif-it italic text-3xl md:text-4xl text-foreground/90">
+              Pairs well with.
+            </h2>
+            <p className="mt-5 text-foreground/65 leading-relaxed max-w-lg">
+              Three pieces from the same season, photographed together in our Florence atelier. Add them all and we ship in one parcel, gift-wrapped if you ask.
+            </p>
+          </div>
+          <div className="md:col-span-5 flex md:justify-end">
+            <Link to="/" data-cursor-hover className="text-[11px] uppercase tracking-[0.3em] text-foreground/70 hover:text-foreground border-b border-foreground/30 hover:border-foreground pb-1 transition-colors">
+              See the full collection →
+            </Link>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {recs.map((p, i) => (
+            <Link
+              key={p.slug}
+              to="/product/$slug"
+              params={{ slug: p.slug }}
+              data-cursor-hover
+              className="group reveal block border border-foreground/10 hover:border-foreground/40 transition-colors bg-background"
+              style={{ transitionDelay: `${i * 80}ms` }}
+            >
               <div className="aspect-[4/5] bg-[color:var(--muted-warm)] relative overflow-hidden">
-                <img src={p.image} alt={p.name} className="absolute inset-0 m-auto h-[85%] w-[85%] object-contain float-soft transition-transform duration-700 group-hover:scale-110" />
+                <span className="absolute top-4 left-4 z-10 text-[10px] uppercase tracking-[0.3em] text-foreground/55">0{i + 1} · {p.tag}</span>
+                <span className="absolute top-4 right-4 z-10 text-[10px] uppercase tracking-[0.3em] text-foreground/55">{p.origin.split(",")[0]}</span>
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  className="absolute inset-0 m-auto h-[80%] w-[80%] object-contain float-soft transition-transform duration-700 group-hover:scale-[1.08]"
+                />
+                <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-foreground/95 text-background px-5 py-4 flex items-center justify-between">
+                  <span className="text-[11px] uppercase tracking-[0.3em]">Quick view</span>
+                  <span className="text-[11px] uppercase tracking-[0.3em]">→</span>
+                </div>
               </div>
-              <div className="mt-6 flex items-baseline justify-between">
-                <h3 className="font-display text-2xl">{p.name}</h3>
-                <span className="font-serif-it">{p.price}</span>
+              <div className="p-5 flex flex-col gap-3">
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3 className="text-lg text-foreground/90 group-hover:text-[color:var(--accent-hot)] transition-colors">{p.name}</h3>
+                  <span className="text-base text-foreground/85">{p.price}</span>
+                </div>
+                <p className="text-xs text-foreground/55 uppercase tracking-[0.2em]">{p.category} · {p.material.split(",")[0]}</p>
+                <p className="text-sm text-foreground/70 leading-relaxed line-clamp-2">{p.story}</p>
               </div>
             </Link>
           ))}
+        </div>
+
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-4 p-6 border border-foreground/15 bg-[color:var(--muted-warm)]">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.3em] text-foreground/55">Bundle the three</p>
+            <p className="mt-2 text-foreground/85">Add all three pieces and we cover shipping, worldwide.</p>
+          </div>
+          <button data-cursor-hover className="h-12 px-6 bg-foreground text-background text-[11px] uppercase tracking-[0.3em] hover:bg-[color:var(--accent-hot)] transition-colors">
+            Add the trio — {`€ ${recs.reduce((a, p) => a + p.priceNum, 0).toLocaleString()}`}
+          </button>
         </div>
       </section>
 
