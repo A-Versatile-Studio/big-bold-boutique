@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, Heart, Minus, Plus, Truck, RotateCcw, ShieldCheck, Star, ChevronDown, Mail } from "lucide-react";
+import { ArrowLeft, Heart, Minus, Plus, Truck, RotateCcw, ShieldCheck, Star, ChevronDown, Mail, Package, Globe2, Clock, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Cursor } from "@/components/Cursor";
 import { Nav } from "@/components/Nav";
@@ -87,6 +87,20 @@ const SUSTAINABILITY = [
   { n: "02", t: "Single-source", d: "Fewer than 80km between the fibre and the finished cloth." },
   { n: "03", t: "Repaired for life", d: "Send it back any time. The atelier that built it will mend it." },
   { n: "04", t: "Plastic-free", d: "Muslin wrap, unbleached cardboard sleeve, paper tape." },
+];
+
+const SHIPPING = [
+  { region: "United Kingdom", time: "1–2 working days", cost: "Free over £150", carrier: "DPD signed" },
+  { region: "European Union", time: "2–4 working days", cost: "Free over €200", carrier: "DHL Express" },
+  { region: "United States & Canada", time: "3–5 working days", cost: "Flat $25 · duties incl.", carrier: "FedEx Priority" },
+  { region: "Rest of world", time: "5–8 working days", cost: "From €35", carrier: "DHL Express" },
+];
+
+const IN_THE_BOX = [
+  { t: "The piece", d: "Wrapped in undyed muslin, tied with cotton tape." },
+  { t: "Care card", d: "A single A6 card with everything you need to know — nothing more." },
+  { t: "Spare buttons", d: "Two extra horn buttons matched to your batch." },
+  { t: "Repair voucher", d: "One free alteration or mend, valid for the life of the garment." },
 ];
 
 function ProductPage() {
